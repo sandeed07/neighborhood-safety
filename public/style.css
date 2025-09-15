@@ -1,0 +1,619 @@
+:root {
+    --primary-red: #D32F2F;
+    --secondary-red: #FF5252;
+    --dark-black: #0A0A0A;
+    --medium-grey: #1E1E1E;
+    --text-color: #ffffff;
+    --light-gray: #BDBDBD;
+    --placeholder-color: #777;
+    --border-color: rgba(255, 255, 255, 0.1);
+    --crime-tape-yellow: #FFC107;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html, body {
+    scroll-behavior: smooth;
+    width: 100%;
+    overflow-x: hidden;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(180deg, var(--dark-black) 0%, #171717 100%);
+    color: var(--text-color);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    position: relative;
+    text-align: center;
+}
+
+/* Base animation states */
+.scroll-animate {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.scroll-animate.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Specific animation types */
+.scroll-animate.fade-in {
+    transform: translateY(20px);
+}
+
+.scroll-animate.scale-in {
+    transform: scale(0.9);
+}
+
+.scroll-animate.slide-in-left {
+    transform: translateX(0px);
+}
+
+.scroll-animate.slide-in-right {
+    transform: translateX(50px);
+}
+
+.scroll-animate.fade-in-scale {
+    transform: scale(0.95);
+}
+
+/* Common animations for interactive elements */
+@keyframes wave {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(5px); }
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.1); opacity: 0.8; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+
+/* Hero Section */
+.hero-container {
+    position: relative;
+    width: 100%;
+    padding: 2rem;
+    z-index: 2;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.background-tape {
+    position: absolute;
+    height: 40px;
+    width: 200%;
+    background-color: var(--crime-tape-yellow);
+    color: var(--dark-black);
+    font-size: 1.1rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform: rotate(-5deg);
+    white-space: nowrap;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.tape-top {
+    top: 5%;
+    left: -50%;
+}
+
+.tape-bottom {
+    bottom: 5%;
+    right: -50%;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 3;
+    padding: 2rem;
+    max-width: 800px;
+}
+
+.headline {
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
+    font-weight: 700;
+    color: var(--text-color);
+    text-shadow: 2px 2px 8px var(--primary-red);
+    line-height: 1.1;
+    margin-bottom: 0.5rem;
+}
+
+.subheadline {
+    font-size: clamp(1rem, 2vw, 1.25rem);
+    color: var(--light-gray);
+    margin-bottom: 2.5rem;
+}
+
+.email-signup {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+#email-input-1 {
+    flex-grow: 1;
+    min-width: 200px;
+    padding: 1rem;
+    border: 2px solid var(--primary-red);
+    border-radius: 8px;
+    background-color: var(--text-color);
+    color: var(--dark-black);
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+#email-input-1::placeholder {
+    color: #555;
+}
+
+#email-input-1:focus {
+    outline: none;
+    border-color: var(--secondary-red);
+    box-shadow: 0 0 0 3px rgba(255, 0, 0, 0.2);
+}
+
+#submit-btn-1 {
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: 8px;
+    background-color: var(--primary-red);
+    color: var(--text-color);
+    font-size: 1rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+#submit-btn-1:hover {
+    background-color: var(--secondary-red);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(255, 82, 82, 0.4);
+}
+
+#submit-btn-1:disabled {
+    background-color: #444;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+.message {
+    margin-top: 1.5rem;
+    font-size: 1rem;
+    font-weight: 600;
+    display: none;
+}
+
+.message.success {
+    color: #4CAF50;
+}
+
+.message.error {
+    color: #F44336;
+}
+
+/* Scroll Down Button */
+.scroll-down-btn {
+    position: absolute;
+    bottom: 5%;
+    right: 5%;
+    background: transparent;
+    border: 2px solid var(--text-color);
+    color: var(--text-color);
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    animation: wave 1.5s infinite ease-in-out;
+    z-index: 10;
+}
+
+.scroll-down-btn svg {
+    width: 24px;
+    height: 24px;
+    color: var(--text-color);
+}
+
+
+/* Why Neighborhood Safety Matters Section */
+.safety-section {
+    background-color: var(--medium-grey);
+    padding: 4rem 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 4rem;
+    position: relative;
+    z-index: 2;
+    text-align: left;
+    flex-wrap: wrap;
+    min-height: 100vh;
+}
+
+.safety-content {
+    flex: 1;
+    max-width: 500px;
+    min-width: 300px;
+}
+
+.safety-section h2 {
+    font-size: clamp(1.5rem, 3vw, 2.5rem);
+    font-weight: 700;
+    color: var(--text-color);
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.reasons-list {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.reasons-list li {
+    font-size: 1rem;
+    color: var(--light-gray);
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+}
+
+.icon {
+    display: inline-block;
+    width: 1.5rem;
+    height: 1.5rem;
+    min-width: 1.5rem;
+    min-height: 1.5rem;
+    border-radius: 50%;
+    background-color: var(--primary-red);
+    position: relative;
+    flex-shrink: 0;
+}
+
+.icon::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background-color: var(--text-color);
+}
+
+.safety-visual {
+    flex-shrink: 0;
+    width: 250px;
+    height: 250px;
+    background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23D32F2F"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5S10.62 6.5 12 6.5s2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    position: relative;
+    animation: pulse 2s infinite ease-in-out;
+}
+
+.safety-visual::before {
+    content: '!';
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    font-size: 2rem;
+    color: var(--dark-black);
+    position: absolute;
+    top: 15%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(-10deg);
+    z-index: 1;
+}
+
+
+/* Solution Section Styles */
+.solution-section {
+    background-color: var(--dark-black);
+    padding: 3rem 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: auto;
+    position: relative;
+}
+
+.solution-content {
+    max-width: 700px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.solution-section h2 {
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 700;
+    color: var(--text-color);
+    margin-bottom: 0.5rem;
+}
+
+.solution-content .description {
+    font-size: clamp(0.9rem, 1.5vw, 1.1rem);
+    color: var(--light-gray);
+    margin-bottom: 2rem;
+    line-height: 1.6;
+}
+
+.phone-mockup {
+    width: 250px;
+    height: 500px;
+    background-color: var(--medium-grey);
+    border: 8px solid var(--text-color);
+    border-radius: 30px;
+    position: relative;
+    margin: 0 auto 2rem;
+    padding: 2rem 1rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    overflow: hidden;
+}
+
+.phone-mockup::before {
+    content: '';
+    width: 60px;
+    height: 8px;
+    background-color: var(--dark-black);
+    border-radius: 4px;
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.notification-card {
+    background-color: var(--light-gray);
+    color: var(--dark-black);
+    padding: 0.75rem;
+    border-radius: 10px;
+    width: 100%;
+    text-align: left;
+    font-weight: 600;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+
+/* Credibility Section Styles */
+.trust-section {
+    background-color: var(--dark-black);
+    padding: 4rem 2rem;
+    position: relative;
+}
+
+.trust-section h2 {
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 700;
+    color: var(--text-color);
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.trust-items-container {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.trust-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1;
+    min-width: 250px;
+    max-width: 300px;
+    padding: 1.5rem;
+    background-color: var(--medium-grey);
+    border-radius: 10px;
+    text-align: center;
+    transition: transform 0.3s ease-in-out;
+}
+
+.trust-item:hover {
+    transform: translateY(-5px);
+}
+
+.trust-icon {
+    font-size: 2.5rem;
+    color: var(--primary-red);
+    margin-bottom: 1rem;
+}
+
+.trust-item h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--text-color);
+    margin-bottom: 0.5rem;
+}
+
+.trust-item p {
+    font-size: 1rem;
+    color: var(--light-gray);
+    line-height: 1.5;
+}
+
+/* Final CTA Section Styles */
+.final-cta-section {
+    background-color: var(--medium-grey);
+    padding: 5rem 2rem;
+    text-align: center;
+    position: relative;
+}
+
+.cta-content {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.final-cta-section h2 {
+    font-size: clamp(1.75rem, 4vw, 2.5rem);
+    font-weight: 700;
+    color: var(--text-color);
+    line-height: 1.2;
+    margin-bottom: 1rem;
+}
+
+.cta-subtext {
+    font-size: clamp(0.9rem, 1.5vw, 1.1rem);
+    color: var(--light-gray);
+    margin-bottom: 2rem;
+}
+
+.cta-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    max-width: 450px;
+    margin: 0 auto;
+}
+
+#email-input-2,
+#zip-input-2 {
+    width: 100%;
+    padding: 1rem;
+    border: 2px solid var(--primary-red);
+    border-radius: 8px;
+    background-color: var(--text-color);
+    color: var(--dark-black);
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+#email-input-2:focus,
+#zip-input-2:focus {
+    outline: none;
+    border-color: var(--secondary-red);
+    box-shadow: 0 0 0 3px rgba(255, 0, 0, 0.2);
+}
+
+#submit-btn-2 {
+    width: 100%;
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: 8px;
+    background-color: var(--primary-red);
+    color: var(--text-color);
+    font-size: 1rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+#submit-btn-2:hover {
+    background-color: var(--secondary-red);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(255, 82, 82, 0.4);
+}
+
+#submit-btn-2:disabled {
+    background-color: #444;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+/* New Scroll Up Button */
+.scroll-up-btn {
+    position: absolute;
+    bottom: 5%;
+    right: 5%;
+    background: transparent;
+    border: 2px solid var(--text-color);
+    color: var(--text-color);
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    animation: wave 1.5s infinite ease-in-out;
+    z-index: 10;
+}
+
+.scroll-up-btn svg {
+    width: 24px;
+    height: 24px;
+    color: var(--text-color);
+}
+
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+    .email-signup {
+        flex-direction: column;
+    }
+    .safety-section {
+        flex-direction: column;
+        text-align: center;
+        gap: 2rem;
+    }
+    .safety-visual {
+        width: 150px;
+        height: 150px;
+    }
+    .safety-visual::before {
+        font-size: 1.5rem;
+    }
+    .scroll-down-btn, .scroll-up-btn {
+        right: 20px;
+    }
+    .solution-section {
+        padding-top: 4rem;
+        padding-bottom: 4rem;
+    }
+    .email-signup {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+    .phone-mockup {
+        height: 450px;
+        margin-bottom: 1.5rem;
+    }
+    .trust-items-container {
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+}
