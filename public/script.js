@@ -37,7 +37,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         try {
-            const response = await fetch('http://localhost:3000/submit', {
+            const response = await fetch('/submit', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
